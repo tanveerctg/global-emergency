@@ -4,8 +4,59 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <title>Global Emergency Preparedness</title>
+    <style>
+      /*! locomotive-scroll v3.6.1 | MIT License | https://github.com/locomotivemtl/locomotive-scroll */
+      body{
+        background-color: black;
+        color:white;
+      }
+      html.has-scroll-smooth {
+        overflow: hidden; }
+
+      html.has-scroll-dragging {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none; }
+
+      .has-scroll-smooth body {
+        overflow: hidden; }
+
+      .has-scroll-smooth [data-scroll-container] {
+        min-height: 100vh; }
+
+      .c-scrollbar {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 11px;
+        height: 100%;
+        transform-origin: center right;
+        transition: transform 0.3s, opacity 0.3s;
+        opacity: 0; }
+        .c-scrollbar:hover {
+          transform: scaleX(1.45); }
+        .c-scrollbar:hover, .has-scroll-scrolling .c-scrollbar, .has-scroll-dragging .c-scrollbar {
+          opacity: 1; }
+
+      .c-scrollbar_thumb {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: black;
+        opacity: 0.5;
+        width: 7px;
+        border-radius: 10px;
+        margin: 2px;
+        cursor: -webkit-grab;
+        cursor: grab; }
+        .has-scroll-dragging .c-scrollbar_thumb {
+          cursor: -webkit-grabbing;
+          cursor: grabbing; }
+    </style>
   </head>
   <body>
     <noscript>
