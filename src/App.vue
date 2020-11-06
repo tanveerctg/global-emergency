@@ -6,52 +6,66 @@
                  <div>
                     <p class="modal__title modal__content">Contact us</p>
                     <div class="height__md"></div>
-                    <a href="mailto:info@globalemergencypreparedness.org" class="modal__email modal__content">info@globalemergencypreparedness.org</a>        
+                    <a href="mailto:info@globalemergencypreparedness.org" class="email modal__content">info@globalemergencypreparedness.org</a>        
                         <svg @click="modalOpen" class="modal__close" height="18pt" viewBox="0 0 365.696 365.696" width="18pt" xmlns="http://www.w3.org/2000/svg"><path d="m243.1875 182.859375 113.132812-113.132813c12.5-12.5 12.5-32.765624 0-45.246093l-15.082031-15.082031c-12.503906-12.503907-32.769531-12.503907-45.25 0l-113.128906 113.128906-113.132813-113.152344c-12.5-12.5-32.765624-12.5-45.246093 0l-15.105469 15.082031c-12.5 12.503907-12.5 32.769531 0 45.25l113.152344 113.152344-113.128906 113.128906c-12.503907 12.503907-12.503907 32.769531 0 45.25l15.082031 15.082031c12.5 12.5 32.765625 12.5 45.246093 0l113.132813-113.132812 113.128906 113.132812c12.503907 12.5 32.769531 12.5 45.25 0l15.082031-15.082031c12.5-12.503906 12.5-32.769531 0-45.25zm0 0"/></svg>                 
                  </div>
             </div>
-  
         </div>
 
         <div class="hero" id="home">
-                           <div class="navbar" >
-            <img src="./assets/logo-white.svg" class="logo">
-            <img src="./assets/mail.svg" class="mail" @click="modalOpen"> 
-          </div> 
+            <div class="navbar" >
+                <img src="./assets/logo-white.svg" class="logo">
+                <img src="./assets/mail.svg" class="mail" @click="modalOpen"> 
+            </div> 
             <a href="#about">
                 <div class="smoothScroll">
                     <span class="circle"></span>       
                 </div>
             </a>
-
             <img src="./assets/world.gif" class="world">
             <p class="slogan"><span class="sloganContainer">We are designing the future of <span class="emergency">emergency</span></span></p>
             <div class="layer"></div>
         </div>
 
-        <div class="aboutSec" id="about">
-            <div class="height__lg"></div>
-            <h1>About</h1>
+        <div class="aboutSec">
+            <div class="height__md"></div>
+            <h1 id="about">About</h1>
             <p>We are building a network of companies and work with those committed to emergency preparation and emergency energy resources before, during, and in the aftermath of natural disasters and public health emergencies.</p>
-            <div class="height__lg"></div>
-           
+            <div class="height__md"></div>      
         </div>
-        
-        <div class="contact" >
  
-            <div class="height__lg"></div>
-            <h1>Contact</h1>
-            <p>info@globalemergencypreparedness.org</p>
-            <div class="height__xl"></div>
+        <div class="ourPlatform">
+        <div class="whatWeDo__titleContainer">
+            <h1>
+                Our Platform
+            </h1>    
+            </div> 
+            <img src="./assets/gep-desktop.png" alt="" class="platFormImg__lg">
+            <img src="./assets/gep-mobile.png" alt="" class="platFormImg__sm">
+            <img src="./assets/gep-tab.png" alt="" class="platFormImg__tab">
+        <div class="upScrollBtnContainer">
             <a href="#home">
                 <div class="upScrollBtn">
                     <span class="circle"></span>
                 </div>
-            </a>
-
+            </a>  
         </div>
-       
+        </div>
+        <!-- <div class="whatWeDo"> -->
+            <!-- <div class="upScrollBtnContainer">
+            <a href="#home">
+                <div class="upScrollBtn">
+                    <span class="circle"></span>
+                </div>
+            </a>  
+            </div> -->
+        <!-- </div> -->
 
+
+
+       <div class="footer">
+           <span>&#169; Global Emergency Preparedness</span>
+       </div>
     </div>
 </template>
 
@@ -83,7 +97,7 @@ export default {
         gsap.to(".navbar",{
                         background:'black',
                         duration:1,
-                        ease: "power1.out",
+                        ease: "slow",
                    
                         scrollTrigger:{
                                     trigger:".smoothScroll",
@@ -95,7 +109,7 @@ export default {
                         gsap.to(".navbar",{
                         background:'black',
                         duration:1,
-                        ease: "power1.out",
+                        ease: "slow",
                         scrollTrigger:{
                                     trigger:".contact",
                                     start:"top top",
@@ -104,31 +118,26 @@ export default {
                         }
                     })
 
-        const tl = gsap.timeline({ defaults: { ease: "power1.out" } });
+        const tl = gsap.timeline({ defaults: { ease: "slow" } });
     
         tl.to(".slogan .sloganContainer", { y: "0%", duration: 1, stagger: 0.25 });
         tl.from(".logo", { opacity: 0,duration: 1});
         tl.from(".mail", { opacity: 0 },"-=1");
 
         const parralax=gsap.timeline({ 
-                ease:'power1.out',
+                ease:'slow',
                 scrollTrigger:{
                 trigger:".hero",
                 start:"top top",
-                scrub:true,
+                scrub:1,
                 end:"bottom bottom-=250"
             }})
             parralax.to(".hero .slogan",{
                 y:-300,
                 opacity:0,
-                duration:3
+                duration:4
 
             },3)
-            // .to(".hero .world",{
-            //     opacity:0,
-            //     duration:4,
-            //     delay:2         
-            // })
             .to(".hero .smoothScroll",{
                 opacity:0,
                 duration:3
@@ -136,32 +145,32 @@ export default {
             var aboutH1After = CSSRulePlugin.getRule(".aboutSec h1:after"); //get the rule
            
 
-           const parralaxAbout=gsap.timeline({ease:'power1.out',scrollTrigger:{ 
+           const parralaxAbout=gsap.timeline({ease:'slow',scrollTrigger:{ 
                 trigger:".aboutSec",
-                start:"top+=80 bottom",
-                end:"center-=20 bottom-=180",
-                scrub:true
+                start:"top+=60 bottom",
+                end:"top+=150 bottom-=100",
+                scrub:.8
             }})
             parralaxAbout         
-            .from(".aboutSec h1",{opacity:0,y:-100,duration:2})
-            .from(".aboutSec p",{opacity:0,y:-100,duration:2})
+            .from(".aboutSec h1,.aboutSec p",{opacity:0,y:-100,duration:1})
             .from(aboutH1After,{ cssRule: {scale:0,transformOrigin:'center',duration:2}},0)
 
-           var contactH1After = CSSRulePlugin.getRule(".contact h1:after"); //get the rule
+           var contactH1After = CSSRulePlugin.getRule(".whatWeDo__titleContainer h1:after"); //get the rule
 
-           const parralaxContact=gsap.timeline({ease:'power1.out',scrollTrigger:{ 
-                trigger:".contact",
-                start:"top+=80 bottom",
-                end:"center+=20 bottom-=100",
-                scrub:true
+           const parralaxContact=gsap.timeline({ease:'slow',scrollTrigger:{ 
+                trigger:".ourPlatform",
+                start:"top+=60 bottom",
+                end:"top+=150 bottom-=100",
+                scrub:1
             }})
             parralaxContact        
-            .from(".contact h1",{opacity:0,y:-100,duration:2})
-            .from(".contact p",{opacity:0,y:-100,duration:2})
-            .from(contactH1After,{ cssRule: {scale:0,transformOrigin:'center',duration:2}},0)
-            .from(".contact .upScrollBtn",{
-                opacity:0
-            })
+            .from(".ourPlatform h1",{opacity:0,y:-100,duration:2})
+            .from(".ourPlatform img",{opacity:0,duration:2,delay:2})
+            .from(".upScrollBtn",{
+                opacity:0,
+                duration:1
+            },5)
+
 
   },
   methods:{
@@ -215,7 +224,36 @@ export default {
             --height_md:3rem;
             --height_xl:8.5rem;
         }
-    
+        .ourPlatform{
+ max-width: 100%;
+  height: auto;
+  background: black;
+        }
+        .ourPlatform img{
+            max-width: 100%;
+            height: auto;
+            transform-origin: center;
+            margin:0 auto;
+        }
+        .footer{
+            background: black;
+            color:white;
+            padding:15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .footer span{
+            font-size: 18
+            px;
+        }
+        /* .whatWeDo{
+            background: black url("./assets/gep-desktop.png") no-repeat center;
+            height: 100vh;
+            width:100%;
+            background-size: 100%; 
+            position: relative;
+        } */
         .hero{
             min-height:100vh;
             height:100%;
@@ -225,7 +263,7 @@ export default {
             background-color: black;
         }
         .modal{
-        position: fixed;
+            position: fixed;
             top: 2vw;
             left: 2vw;
             right: 2vw;
@@ -237,16 +275,24 @@ export default {
                     transform:scaleY(0)
         }
 
-        .modal__email{
+        .email{
             display: inline-block;
-            font-weight:bolder;
             font-size: var(--font_lg);
-                 word-break: break-all;
-                 text-decoration: none;
-                 color: black;
-                 position: relative;
+            -ms-word-break: break-all;
+            word-break: break-all;
+
+            /* Non standard for WebKit */
+            word-break: break-word;
+
+            -webkit-hyphens: auto;
+            -moz-hyphens: auto;
+                hyphens: auto;
+                text-decoration: none;
+                color: black;
+                position: relative;
+                margin: 0 20px;
         }
-        .modal__email::after{
+        .email::after{
             position: absolute;
             content: "";
             background: black;
@@ -257,13 +303,20 @@ export default {
             transform: scaleX(0);
             transform-origin:left;
             transition: all .2s ease-in;
+                -ms-word-break: break-all;
+             word-break: break-all;
         }
-        .modal__email:hover.modal__email::after{
+        
+        .email:hover{
+            font-weight:600;
+        }
+        .email:hover.email::after{
             transform: scaleX(1);
+            
         }
         .modal__title{
             font-size: var(--font_md);
-            font-weight:500;
+            font-weight:600;
         }
        .modal::before {
             content: '';
@@ -420,8 +473,8 @@ export default {
             padding:0 20px ;
             position:relative;
             z-index:111;
-            background:black;
-            color:white; 
+            background:white;
+            color:black; 
         }
         .aboutSec h1{
             font-size:var(--font_title);
@@ -442,26 +495,34 @@ export default {
                     transform:translateX(-50%);
 
         }
-        .contact h1{
+        .whatWeDo__titleContainer{
+            background: black;
+            padding:var(--height_md) 0; 
+            display: flex;
+            justify-content: center; 
+            
+        }
+        .whatWeDo__titleContainer h1{
             font-size:var(--font_title);
             position:relative;
             font-weight:600;
-            margin-bottom:var(--height_md);
+             z-index: 222;
         }
-             .contact h1::after{
+        
+        .whatWeDo__titleContainer h1::after{
             content:"";
             position:absolute;
             width:30px;
             height:2px;
-            background:white;
             bottom:-5px;
             left:50%;
             -webkit-transform:translateX(-50%);
                 -ms-transform:translateX(-50%);
                     transform:translateX(-50%);
-
+            background: white;
+            z-index: 222;
         }
- 
+
         .aboutSec p{
             max-width:800px;
             width:100%;
@@ -469,16 +530,12 @@ export default {
             line-height:1.35;
             font-size:var(--font_about);
         }
-        .contact p{
+        .contact__email{
+            display: inline-block;
             text-align:center;
             line-height:1.8;
-            font-size:var(--font_md);
-            color:white;
-            border-radius: 10px;
-            font-weight: 700;   
-            width: 100%;
-            word-break: break-all;
-
+            font-size:var(--font_about);
+        
         }
         .height__md{
             height:var(--height_md);
@@ -492,12 +549,12 @@ export default {
 
         .smoothScroll{
             position: absolute;
-            bottom:20px;
+            bottom:10px;
             left:50%;
             -webkit-transform:translateX(-50%);
                 -ms-transform:translateX(-50%);
                     transform:translateX(-50%);
-            z-index:22;
+            z-index:1000;
             height:45px;
             width:24px;
             border:2px solid white;
@@ -558,7 +615,7 @@ export default {
         }
         @-webkit-keyframes upCir{
             0%{
-                top:85%;
+                top:15%;
                 -webkit-transform: translateY(-15%);
                         transform: translateY(-15%);
                 opacity: 1;
@@ -567,7 +624,7 @@ export default {
                 opacity: .8;
             }
             100%{
-                top:15%;
+                top:85%;
                 -webkit-transform: translateY(-85%);
                         transform: translateY(-85%);
                 opacity: 0;
@@ -577,8 +634,8 @@ export default {
         @keyframes upCir{
             0%{
                 top:85%;
-                -webkit-transform: translateY(-15%);
-                        transform: translateY(-15%);
+                -webkit-transform: translateY(-85%);
+                        transform: translateY(-85%);
                 opacity: 1;
             }
             60%{
@@ -586,25 +643,24 @@ export default {
             }
             100%{
                 top:15%;
-                -webkit-transform: translateY(-85%);
-                        transform: translateY(-85%);
+                -webkit-transform: translateY(-15%);
+                        transform: translateY(-15%);
                 opacity: 0;
             }
 
         }
 
-
-        .contact{
+        .upScrollBtnContainer{
+            /* position: absolute;
+            left:50%;
+            transform: translateX(-50%);
+            bottom: 5px; */
             background: black;
-            color: white;
+            display: flex;
+            justify-content: center;
         }
         .upScrollBtn{
-            position: absolute;
-            bottom:20px;
-            left:50%;
-            -webkit-transform:translateX(-50%);
-                -ms-transform:translateX(-50%);
-                    transform:translateX(-50%);
+            position: relative;
             z-index:22;
             height:45px;
             width:24px;
@@ -628,27 +684,84 @@ export default {
             -webkit-animation: upCir 2s ease-in-out infinite;
                     animation: upCir 2s ease-in-out infinite;
         }
+        .platFormImg__lg,.platFormImg__tab{
+            display: none;
+        }
         /* Small devices (landscape phones, 576px and up) */
         @media (min-width: 576px) {
-            
+          
         }
         /* Medium devices (tablets, 768px and up) */
         @media (min-width: 768px) {
             html{
                 font-size:12px;
             }
-            .aboutSec p{
+            .aboutSec p,.contact__email{
               font-size:30px;
              }
+            .platFormImg__lg{
+                display: none;
+            }
+            .platFormImg__sm{
+                display: none;
+            }
+            .platFormImg__tab{
+                display: block;
+            }
         }
         /* Large devices (desktops, 992px and up) */
         @media (min-width: 992px) {
                 html{
                     font-size:13px;
                 }
-                .aboutSec p{
+                .aboutSec p,.contact__email{
                     font-size:52px;
                 }
+            .platFormImg__lg{
+                display:block;
+            }
+            .platFormImg__sm{
+                display: none;
+            }
+            .platFormImg__tab{
+                display: none;
+            }
            
         }
+
+        @media (max-width: 1050px) {
+                .email::after{
+                    display: none;
+                }
+                .email:hover{
+                    font-weight:normal;
+                }
+        }
+        @media (max-width: 1024px) {
+            .whatWeDo {
+                   height:70vh;
+            }
+        }
+        @media (max-width: 800px) {
+            .whatWeDo {
+                height: 60vh;
+                background: black url("./assets/gep-mobile.png") no-repeat center;
+                background-size: 100%;  
+            }
+
+        }
+        @media (max-width: 450px) {
+            .whatWeDo {
+                height: 40vh;
+                width: 100%;
+                background: black url("./assets/gep-mobile.png") no-repeat center;
+                background-size: 100%;
+            }
+            .smoothScroll{
+                bottom:60px;
+            }
+        }
+   
 </style>
+
+
