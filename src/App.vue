@@ -15,7 +15,11 @@
         <div class="hero" id="home">
             <div class="navbar" >
                 <img src="./assets/logo-white.svg" class="logo">
-                <img src="./assets/mail.svg" class="mail" @click="modalOpen"> 
+                <div>
+                 <a href="https://flipbook.globalemergencypreparedness.org" target="_blank"><img src="./assets/book.png" class="book"></a>
+                 <img src="./assets/mail.svg" class="mail" @click="modalOpen"> 
+                </div>
+
             </div> 
             <a href="#about">
                 <div class="smoothScroll">
@@ -51,18 +55,6 @@
             </a>  
         </div>
         </div>
-        <!-- <div class="whatWeDo"> -->
-            <!-- <div class="upScrollBtnContainer">
-            <a href="#home">
-                <div class="upScrollBtn">
-                    <span class="circle"></span>
-                </div>
-            </a>  
-            </div> -->
-        <!-- </div> -->
-
-
-
        <div class="footer">
            <span>&#169; Global Emergency Preparedness</span>
        </div>
@@ -123,6 +115,7 @@ export default {
         tl.to(".slogan .sloganContainer", { y: "0%", duration: 1, stagger: 0.25 });
         tl.from(".logo", { opacity: 0,duration: 1});
         tl.from(".mail", { opacity: 0 },"-=1");
+        tl.from(".book", { opacity: 0 },"-=1");
 
         const parralax=gsap.timeline({ 
                 ease:'slow',
@@ -247,13 +240,7 @@ export default {
             font-size: 18
             px;
         }
-        /* .whatWeDo{
-            background: black url("./assets/gep-desktop.png") no-repeat center;
-            height: 100vh;
-            width:100%;
-            background-size: 100%; 
-            position: relative;
-        } */
+
         .hero{
             min-height:100vh;
             height:100%;
@@ -438,9 +425,15 @@ export default {
         .logo{
             width:150px;
         }
+        .book{
+            width:35px;
+            cursor: pointer;  
+            margin-right:15px;
+        }
         .mail{
             width:35px;
             cursor: pointer;
+            
         }
         .aboutSec{
             display:-webkit-box;
@@ -651,10 +644,6 @@ export default {
         }
 
         .upScrollBtnContainer{
-            /* position: absolute;
-            left:50%;
-            transform: translateX(-50%);
-            bottom: 5px; */
             background: black;
             display: flex;
             justify-content: center;
