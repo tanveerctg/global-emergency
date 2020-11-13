@@ -34,7 +34,7 @@
         <div class="aboutSec">
             <div class="height__md"></div>
             <h1 id="about">About</h1>
-            <p>We are building a network of companies and work with those committed to emergency preparation and emergency energy resources before, during, and in the aftermath of natural disasters and public health emergencies.</p>
+            <p>We are building a global network of companies.We work with those committed to emergency preparation and emergency energy resources before, during, and in the aftermath of natural disasters and public health emergencies.</p>
             <div class="height__md"></div>      
         </div>
  
@@ -66,11 +66,37 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import {CSSRulePlugin} from "gsap/all";
 
+function debounce(func, wait, immediate) {
+  var timeout;
+
+  return function executedFunction() {
+    var context = this;
+    var args = arguments;
+	    
+    var later = function() {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+
+    var callNow = immediate && !timeout;
+	
+    clearTimeout(timeout);
+
+    timeout = setTimeout(later, wait);
+	
+    if (callNow) func.apply(context, args);
+  };
+};
+
+var returnedFunction = debounce(function() {
+        // It calcule the actual viewport size in mobile devices
+    document.documentElement.style.setProperty('--vh',window.innerHeight+'px')
+   
+}, 1000);
+
+
 export default {
   name: 'App',
-  components: {
-
-  },
   data(){
   return{
       isModalOpen:false
@@ -80,6 +106,9 @@ export default {
 
   mounted(){
 
+        // It calcule the actual viewport size in mobile devices
+        document.documentElement.style.setProperty('--vh',window.innerHeight + 'px')
+        window.addEventListener('resize', returnedFunction);
         //watch the free video on how this demo was made
         // https://www.snorkl.tv/scrolltrigger-smooth-scroll/
 
@@ -142,7 +171,7 @@ export default {
                 trigger:".aboutSec",
                 start:"top+=60 bottom",
                 end:"top+=150 bottom-=100",
-                scrub:.8
+                scrub:.5
             }})
             parralaxAbout         
             .from(".aboutSec h1,.aboutSec p",{opacity:0,y:-100,duration:1})
@@ -171,7 +200,7 @@ export default {
         const tl = gsap.timeline({ defaults: { ease: "power2.out" }});
         
         if(this.isModalOpen){
-            console.log('asche')
+         
             tl.to(".modal", { scaleY:0 ,transformOrigin:'center'})
               .from(".modal__content",{y:15,opacity:0})
             this.isModalOpen=!this.isModalOpen
@@ -218,9 +247,9 @@ export default {
             --height_xl:8.5rem;
         }
         .ourPlatform{
- max-width: 100%;
-  height: auto;
-  background: black;
+            max-width: 100%;
+            height: auto;
+            background: black;
         }
         .ourPlatform img{
             max-width: 100%;
@@ -237,13 +266,12 @@ export default {
             justify-content: center;
         }
         .footer span{
-            font-size: 18
-            px;
+            font-size: 14px;
         }
 
         .hero{
-            min-height:100vh;
-            height:100%;
+            height:100vh;
+            height:calc(var(--vh,1vh));
             width:100%;
             position :relative;
             overflow-y:hidden;
@@ -542,7 +570,7 @@ export default {
 
         .smoothScroll{
             position: absolute;
-            bottom:10px;
+            bottom:15px;
             left:50%;
             -webkit-transform:translateX(-50%);
                 -ms-transform:translateX(-50%);
@@ -746,11 +774,23 @@ export default {
                 background: black url("./assets/gep-mobile.png") no-repeat center;
                 background-size: 100%;
             }
-            .smoothScroll{
-                bottom:60px;
+
+        }
+        @media (orientation: landscape) and (max-width: 900px) {
+                .world {
+                    width:70%;
+                }
+            }
+        @media (orientation: landscape) and (max-width: 650px) {
+            .world {
+                width:60%;
             }
         }
-   
+        @media (orientation: landscape) and (max-width: 550px) {
+            .world {
+                width:50%;
+            }
+        }
 </style>
 
 
