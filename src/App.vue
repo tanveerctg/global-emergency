@@ -37,7 +37,14 @@
             <p>We are building a global network of companies.We work with those committed to emergency preparation and emergency energy resources before, during, and in the aftermath of natural disasters and public health emergencies.</p>
             <div class="height__md"></div>      
         </div>
- 
+
+        <div class="myvatarSec">
+            <div class="height__md"></div>
+            <h1 id="myvatar">Myvatar™</h1>
+            <p>At <strong>GEP</strong>, we are data driven specializing in manufacturing consultation and product market research. Call us about our unique <strong>Myvatar™</strong> market research program and see what our unique <strong>Myvatar™</strong> program can do for your company!</p>
+            <div class="height__md"></div>      
+        </div>
+
         <div class="ourPlatform">
         <div class="whatWeDo__titleContainer">
             <h1>
@@ -66,34 +73,6 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import {CSSRulePlugin} from "gsap/all";
 
-function debounce(func, wait, immediate) {
-  var timeout;
-
-  return function executedFunction() {
-    var context = this;
-    var args = arguments;
-	    
-    var later = function() {
-      timeout = null;
-      if (!immediate) func.apply(context, args);
-    };
-
-    var callNow = immediate && !timeout;
-	
-    clearTimeout(timeout);
-
-    timeout = setTimeout(later, wait);
-	
-    if (callNow) func.apply(context, args);
-  };
-};
-
-var returnedFunction = debounce(function() {
-        // It calcule the actual viewport size in mobile devices
-    document.documentElement.style.setProperty('--vh',window.innerHeight+'px')
-   
-}, 1000);
-
 
 export default {
   name: 'App',
@@ -105,16 +84,13 @@ export default {
   ,
 
   mounted(){
-
-        // It calcule the actual viewport size in mobile devices
-        document.documentElement.style.setProperty('--vh',window.innerHeight + 'px')
-        window.addEventListener('resize', returnedFunction);
+        
         //watch the free video on how this demo was made
         // https://www.snorkl.tv/scrolltrigger-smooth-scroll/
 
         gsap.registerPlugin(ScrollTrigger);
         gsap.registerPlugin(CSSRulePlugin);
-
+  
         gsap.to(".navbar",{
                         background:'black',
                         duration:1,
@@ -176,6 +152,20 @@ export default {
             parralaxAbout         
             .from(".aboutSec h1,.aboutSec p",{opacity:0,y:-100,duration:1})
             .from(aboutH1After,{ cssRule: {scale:0,transformOrigin:'center',duration:2}},0)
+
+
+            var myvatarH1After = CSSRulePlugin.getRule(".myvatarSec h1:after"); //get the rule
+           
+
+           const parralaxMyvatar=gsap.timeline({ease:'slow',scrollTrigger:{ 
+                trigger:".myvatarSec",
+                start:"top+=60 bottom",
+                end:"top+=150 bottom-=100",
+                scrub:.5
+            }})
+            parralaxMyvatar         
+            .from(".myvatarSec h1,.myvatarSec p",{opacity:0,y:-100,duration:1})
+            .from(myvatarH1After,{ cssRule: {scale:0,transformOrigin:'center',duration:2}},0)
 
            var contactH1After = CSSRulePlugin.getRule(".whatWeDo__titleContainer h1:after"); //get the rule
 
@@ -245,6 +235,7 @@ export default {
             --height_lg:4rem;
             --height_md:3rem;
             --height_xl:8.5rem;
+            --vh:100vh
         }
         .ourPlatform{
             max-width: 100%;
@@ -271,7 +262,6 @@ export default {
 
         .hero{
             height:100vh;
-            height:calc(var(--vh,1vh));
             width:100%;
             position :relative;
             overflow-y:hidden;
@@ -417,7 +407,7 @@ export default {
                 -ms-transform: translateY(100%);
                     transform: translateY(100%);
         }
-        .about{
+        .about,.myvatar{
             color: white;
             position: absolute;
             bottom: 0;
@@ -480,6 +470,23 @@ export default {
             background:white;
             color:black;
         }
+        .myvatarSec{
+            display:-webkit-box;
+            display:-ms-flexbox;
+            display:flex;
+            -webkit-box-orient:vertical;
+            -webkit-box-direction:normal;
+                -ms-flex-direction:column;
+                    flex-direction:column;
+            -webkit-box-align:center;
+                -ms-flex-align:center;
+                    align-items:center;
+            padding:0 20px ;
+            position:relative;
+            z-index:111;
+            background:#D7F205;
+            color:black;       
+        }
         .contact{
                      display:-webkit-box;
                      display:-ms-flexbox;
@@ -504,6 +511,25 @@ export default {
             margin-bottom:var(--height_md);
         }
         .aboutSec h1::after{
+            content:"";
+            position:absolute;
+            width:30px;
+            height:2px;
+            background:black;
+            bottom:-5px;
+            left:50%;
+            -webkit-transform:translateX(-50%);
+                -ms-transform:translateX(-50%);
+                    transform:translateX(-50%);
+
+        }
+        .myvatarSec h1{
+            font-size:var(--font_title);
+            position:relative;
+            font-weight:600;
+            margin-bottom:var(--height_md);
+        }
+        .myvatarSec h1::after{
             content:"";
             position:absolute;
             width:30px;
@@ -545,6 +571,13 @@ export default {
         }
 
         .aboutSec p{
+            max-width:800px;
+            width:100%;
+            text-align:center;
+            line-height:1.35;
+            font-size:var(--font_about);
+        }
+        .myvatarSec p{
             max-width:800px;
             width:100%;
             text-align:center;
@@ -713,7 +746,7 @@ export default {
             html{
                 font-size:12px;
             }
-            .aboutSec p,.contact__email{
+            .aboutSec p,.contact__email,.myvatarSec p{
               font-size:30px;
              }
             .platFormImg__lg{
@@ -731,7 +764,7 @@ export default {
                 html{
                     font-size:13px;
                 }
-                .aboutSec p,.contact__email{
+                .aboutSec p,.contact__email,.myvatarSec p{
                     font-size:52px;
                 }
             .platFormImg__lg{
@@ -774,6 +807,9 @@ export default {
                 background: black url("./assets/gep-mobile.png") no-repeat center;
                 background-size: 100%;
             }
+            .smoothScroll{
+                bottom: 60px;
+            }
 
         }
         @media (orientation: landscape) and (max-width: 900px) {
@@ -788,7 +824,7 @@ export default {
         }
         @media (orientation: landscape) and (max-width: 550px) {
             .world {
-                width:50%;
+                width:40%;
             }
         }
 </style>
